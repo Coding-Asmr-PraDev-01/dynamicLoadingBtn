@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+*,
+*::before,
+*::after{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root{
+    --progress-val: 0%;
+}
+
+html{
+    font-family: 'Poppins', sans-serif;
+}
+
+.progressBtn{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.downloadBtn{
+    position: relative;
+    width: 120px;
+    border: none;
+    outline: none;
+    padding: 10px 20px;
+    border-radius: 2rem;
+    cursor: pointer;
+    transition: .4s ease-in;
+    font-weight: 600;
+}
+
+.buttonText{
+    display: inline-block;
+}
+
+.loadingText,
+.percentage{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+    opacity: 0;
+    transition: 0.6s ease-in-out;
+}
+
+
+.progressBtn.active .loadingText{
+    top: -43%;
+    opacity: 1;
+    z-index: 1;
+}
+
+.progressBtn.active .percentage{
+    top: 150%;
+    opacity: 1;
+    z-index: 1;
+}
+
+.progressBtn.active .downloadBtn{
+    width: 300px;
+}
+
+.downloadBtn::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: var(--progress-val);
+    background-image: repeating-linear-gradient(-45deg, cyan 50%, rgb(31, 236, 255) 100%);
+    background-size: 50px 50px;
+    border-radius: 25px;
+    transition: width .6s ease  ;
+}
+
+.progressBtn.inactive .downloadBtn{
+    background-color: rgb(9, 239, 108);
+    color: #fff;
+}
+
+.progressBtn.inactive .downloadBtn::after{
+    opacity: 0;
+}
